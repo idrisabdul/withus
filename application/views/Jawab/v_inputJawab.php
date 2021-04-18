@@ -1,7 +1,48 @@
+<style>
+    .fixed-button {
+        position: fixed;
+        bottom: 5px;
+        right: 10px;
+        left: 10px;
+        opacity: 0;
+        z-index: 9;
+        -webkit-transition: all 0.5s ease;
+        transition: all 0.5s ease;
+        -webkit-animation: pulse 2s infinite;
+        animation: pulse 2s infinite;
+        border-radius: 25px;
+    }
+
+    .fixed-button .btn {
+        margin: 0;
+        padding: 12px 25px;
+        background: #3b98ff;
+        border: 1px solid #3b98ff;
+        border-radius: 25px;
+        text-transform: capitalize;
+        font-weight: bold;
+        font-size: 16px
+    }
+
+    .fixed-button .btn:focus,
+    .fixed-button .btn:active,
+    .fixed-button .btn:hover {
+        background: #303549;
+        border-bottom: 1px solid #303549
+    }
+
+
+    .fixed-button.active {
+        opacity: 1
+    }
+</style>
+
 <div id="tanya" class="card">
     <div class="alert alert-success alert-dismissible" id="success" style="display:none;">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
     </div>
+
+    <input type="hidden" id="user" value="<?= $this->session->userdata('username') ?>" />
     <div class="card-header bg-info">
         <h5 style="color: white;"><?= ucfirst($tanya['username']); ?></h5>
         <span><?= $tanya['tgl_pertanyaan']; ?></span>
@@ -35,10 +76,14 @@
             </div>
             <?php if (!$this->session->userdata('username')) { ?>
             <?php } else { ?>
-                <div class="btn-group" role="group" data-toggle="tooltip" data-placement="top" title="">
-                    <button onclick="deleteConfirm('<?= base_url('home/delete/' . $tanya['id_tanya']) ?>')" class="btn btn-primary btn-sm waves-effect waves-light"><i class="fa fa-trash"></i></button>
-                </div>
-                <button href="#" id="showJawab" class="btn btn-sm btn-outline-primary text-right f-w-600">Beri Jawaban</button>
+                <?php if ($this->session->userdata('id_user') == $tanya['user_id']) { ?>
+                    <div class="btn-group" role="group" data-toggle="tooltip" data-placement="top" title="">
+                        <button onclick="deleteConfirm('<?= base_url('home/delete/' . $tanya['id_tanya']) ?>')" class="btn btn-primary btn-sm waves-effect waves-light"><i class="fa fa-trash"></i></button>
+                    </div>
+                    <button href="#" id="showJawab" class="btn btn-sm btn-outline-primary text-right f-w-600">Beri Jawaban</button>
+                <?php } else { ?>
+                    <button href="#" id="showJawab" class="btn btn-sm btn-outline-primary text-right f-w-600">Beri Jawaban</button>
+                <?php } ?>
             <?php } ?>
         </div>
     </div>
@@ -50,8 +95,8 @@
     <hr class="mt-0 mb-2">
 
 </div>
-<div>
-    <div id="kolom_jawab" class="form-group fixed-button active">
+<div class="fixed-button active">
+    <div id="kolom_jawab" class="form-group">
         <input type="hidden" id="nama_nanya" name="nama_nanya" value="<?= ucfirst($tanya['username']); ?>">
         <input type="hidden" id="kategori" name="kategori" value="<?= $tanya['kategori'] ?>">
         <input type="hidden" id="pertanyaan" name="pertanyaan" value="<?= $tanya['pertanyaan']; ?>">
@@ -144,24 +189,60 @@ if ($sqlcheck->num_rows() > 0) {
                 success: function(data) {
                     var html = '';
                     var i;
+                    var user = $('#user').val();
                     // alert(data);
                     for (i = 0; i < data.length; i++) {
-                        html += '<tr>' +
-                            '<td>' +
-                            '<td class="mb-2 mt-3">' +
-                            '<div class="text-right">' +
-                            '<h6 class="pull-left">' + data[i]['nama_jawab'] + '</h6>' +
-                            '<a class="waves-effect waves-light" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="ti-more"></i></a>' +
-                            '<div class="dropdown-menu" aria-labelledby="dropdown-2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">' +
-                            '<a class="dropdown-item waves-light waves-effect" id="delete-jaw" data="' + data[i]['id_jawab'] + '" href="javascript:;">Hapus</a>' +
-                            '<div class="dropdown-divider"></div>' +
-                            '<a class="dropdown-item waves-light waves-effect" href="#">Edit</a>' +
-                            '</div>' +
-                            '</div>' +
-                            '<p class="text-muted">' + data[i]['jawaban'] + '</p>' +
-                            '<i style="color: green;" <?php if (!$this->session->userdata('username')) { ?> id="apreciate" class="fa fa-trophy mr-2" <?php } else { ?> id="apreciate1" class="fa fa-trophy mr-2" <?php } ?>  data-id="' + data[i]['id_jawab'] + '"></i><label class="badge badge-inverse-success"><span id="jumlahlike">' + data[i]['rating'] + '</span></label>' +
-                            '</td>' +
-                            '</tr>';
+                        if (user == data[i]['nama_jawab']) {
+                            html += '<tr>' +
+                                '<td>' +
+                                '<td class="mb-2 mt-3">' +
+                                '<div class="text-right">' +
+                                '<h6 class="pull-left">' + data[i]['nama_jawab'] + '</h6>' +
+                                '<?php if ($this->session->userdata('username')) { ?> ' +
+                                '<a class="waves-effect waves-light" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="ti-more"></i></a>' +
+                                '<div class="dropdown-menu" aria-labelledby="dropdown-2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">' +
+                                '<a class="dropdown-item waves-light waves-effect" id="delete-jaw" data="' + data[i]['id_jawab'] + '" href="javascript:;">Hapus</a>' +
+                                '<div class="dropdown-divider"></div>' +
+                                '<a class="dropdown-item waves-light waves-effect" href="#">Edit</a>' +
+                                '</div>' +
+                                '</div>' +
+                                '<?php } else { ?>' +
+                                '<a class="waves-effect waves-light" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="ti-more"></i></a>' +
+                                '<div class="dropdown-menu" aria-labelledby="dropdown-2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">' +
+                                '<a class="dropdown-item waves-light waves-effect" href="<?= base_url('auth') ?>">Login diperlukan</a>' +
+                                '</div>' +
+                                '</div>' +
+                                ' <?php } ?>' +
+                                '<p class="text-muted">' + data[i]['jawaban'] + '</p>' +
+                                '<i style="color: green;" <?php if (!$this->session->userdata('username')) { ?> id="apreciate" class="fa fa-trophy mr-2" <?php } else { ?> id="apreciate1" class="fa fa-trophy mr-2" <?php } ?>  data-id="' + data[i]['id_jawab'] + '"></i><label class="badge badge-inverse-success"><span id="jumlahlike">' + data[i]['rating'] + '</span></label>' +
+                                '</td>' +
+                                '</tr>';
+                        } else {
+                            html += '<tr>' +
+                                '<td>' +
+                                '<td class="mb-2 mt-3">' +
+                                '<div class="text-right">' +
+                                '<h6 class="pull-left">' + data[i]['nama_jawab'] + '</h6>' +
+                                '<?php if ($this->session->userdata('username')) { ?> ' +
+                                '<a class="waves-effect waves-light" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="ti-more"></i></a>' +
+                                '<div class="dropdown-menu" aria-labelledby="dropdown-2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">' +
+                                '<a class="dropdown-item waves-light waves-effect" id="show_profile" data="' + data[i]['id_jawab'] + '" href="javascript:;">Profile</a>' +
+                                '<a class="dropdown-item waves-light waves-effect" id="show_profile" data="' + data[i]['id_jawab'] + '" href="javascript:;">Simpan</a>' +
+                                '</div>' +
+                                '</div>' +
+                                '<?php } else { ?>' +
+                                '<a class="waves-effect waves-light" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="ti-more"></i></a>' +
+                                '<div class="dropdown-menu" aria-labelledby="dropdown-2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">' +
+                                '<a class="dropdown-item waves-light waves-effect" href="<?= base_url('auth') ?>">Login diperlukan</a>' +
+                                '</div>' +
+                                '</div>' +
+                                ' <?php } ?>' +
+                                '<p class="text-muted">' + data[i]['jawaban'] + '</p>' +
+                                '<i style="color: green;" <?php if (!$this->session->userdata('username')) { ?> id="apreciate" class="fa fa-trophy mr-2" <?php } else { ?> id="apreciate1" class="fa fa-trophy mr-2" <?php } ?>  data-id="' + data[i]['id_jawab'] + '"></i><label class="badge badge-inverse-success"><span id="jumlahlike">' + data[i]['rating'] + '</span></label>' +
+                                '</td>' +
+                                '</tr>';
+
+                        }
                     }
                     n = data.length;
                     $('#jawaban_show').html(html);

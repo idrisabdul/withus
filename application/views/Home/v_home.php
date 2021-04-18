@@ -7,7 +7,7 @@
                         <div class="card-header">
                             <form action="<?= base_url('tanya/input') ?>" method="post">
                                 <div class="form-group form-default">
-                                    <h5>Ajukan pertanyaan</h5>
+                                    <h5>Curhat Sini</h5>
                                     <div class="row">
                                         <div class="col-md">
                                             <textarea name="pertanyaan" class="form-control mt-4"></textarea>
@@ -24,7 +24,7 @@
                                         <div class="col-sm-6">
                                             <select name="username" id="" class="form-control">
                                                 <option value="<?= ucfirst($this->session->userdata('username')); ?>"><?= ucfirst($this->session->userdata('username')); ?></option>
-                                                <option value="Anonymous">Anonymous</option>
+                                                <option value="No Name">No Name</option>
                                             </select>
                                         </div>
                                         <div class="col-sm-3">

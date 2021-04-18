@@ -18,11 +18,13 @@ class Auth extends CI_Controller
 
     public function process()
     {
-        $post = $this->input->post(null, TRUE);
-        if (isset($post['login'])) {
-            $user = $this->user_m->login($post);
-            if ($user->num_rows() > 0) {
-                $row = $user->row_array();
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
+
+        $user = $this->user_m->login($username);
+        if ($user->num_rows() > 0) {
+            $row = $user->row_array();
+            if (password_verify($password, $row['password'])) {
                 $params = [
                     'id_user' => $row['id_user'],
                     'username' => $row['username'],
@@ -33,9 +35,12 @@ class Auth extends CI_Controller
                 $this->session->set_userdata($params);
                 echo "<script>window.location='" . base_url('home') . "'</script>";
             } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger">User tidak ditemukan</div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-danger">Password Salah</div>');
                 redirect('auth');
             }
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger">User tidak ditemukan</div>');
+            redirect('auth');
         }
     }
 
@@ -54,19 +59,19 @@ class Auth extends CI_Controller
             'is_unique' => 'Username sudah tersedia!',
             'required' => 'Username wajib diisi'
         ]);
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.username]', [
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
             'is_unique' => 'Email sudah tersedia!',
             'required' => 'email wajib diisi'
         ]);
         $this->form_validation->set_rules('profesi', 'Profesi', 'required|trim');
-        $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|matches[re-password]',  [
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[6]|matches[re-password]',  [
             'matches' => 'Password tidak sesuai',
             'min_length' => 'Password terlalu pendek!'
         ]);
         $this->form_validation->set_rules('re-password', 'Password', 'required|trim|matches[password]');
 
         if ($this->form_validation->run() == false) {
-            $this->template->load('template', 'auth/v_registrasi');
+            $this->load->view('auth/v_registrasi');
         } else {
             $data = [
                 'username' => htmlspecialchars($this->input->post('username', true)),

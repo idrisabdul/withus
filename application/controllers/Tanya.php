@@ -26,7 +26,6 @@ class Tanya extends CI_Controller
             'kategori' => $this->input->post('kategori'),
             'username' => $this->input->post('username'),
             'pertanyaan' => $this->input->post('pertanyaan'),
-            'tgl_pertanyaan' => date("Y-m-d"),
         ];
         $this->db->insert('tanya', $data);
         redirect('home');

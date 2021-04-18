@@ -188,9 +188,9 @@
                                 <div class="main-menu-content">
                                     <ul>
                                         <li class="more-details">
-                                            <a href="<?= base_url() ?>user-profile.html"><i class="ti-user"></i>View Profile</a>
+                                            <a href="<?= base_url() ?>user-profile.html"><i class="ti-user"></i>Profil</a>
                                             <a href="<?= base_url() ?>#!"><i class="ti-settings"></i>Settings</a>
-                                            <a href="<?= base_url() ?>auth-normal-sign-in.html"><i class="ti-layout-sidebar-left"></i>Logout</a>
+                                            <a href="<?= base_url() ?>auth/logout"><i class="ti-layout-sidebar-left"></i>Logout</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -204,159 +204,14 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="pcoded-navigation-label">Navigation</div>
+                            <div class="pcoded-navigation-label"></div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="">
                                     <a href="<?= base_url() ?>home" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-                                        <span class="pcoded-mtext">Dashboard</span>
+                                        <span class="pcoded-mtext">Beranda</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
-                                </li>
-                            </ul>
-                            <div class="pcoded-navigation-label">UI Element</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="pcoded-hasmenu">
-                                    <a href="<?= base_url() ?>javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i><b>BC</b></span>
-                                        <span class="pcoded-mtext">Basic</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                    <ul class="pcoded-submenu">
-                                        <li class=" ">
-                                            <a href="<?= base_url() ?>breadcrumb.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Breadcrumbs</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="<?= base_url() ?>button.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Button</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="<?= base_url() ?>accordion.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Accordion</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="<?= base_url() ?>tabs.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Tabs</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="<?= base_url() ?>color.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Color</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="<?= base_url() ?>label-badge.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Label Badge</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="<?= base_url() ?>tooltip.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Tooltip And Popover</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="<?= base_url() ?>typography.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Typography</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="<?= base_url() ?>notification.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Notifications</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <div class="pcoded-navigation-label">Forms</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                                    <a href="<?= base_url() ?>form-elements-component.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
-                                        <span class="pcoded-mtext">Form</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="pcoded-navigation-label">Tables</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                                    <a href="<?= base_url() ?>bs-basic-table.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-receipt"></i><b>B</b></span>
-                                        <span class="pcoded-mtext">Table</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="pcoded-navigation-label">Chart And Maps</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                                    <a href="<?= base_url() ?>chart-morris.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-bar-chart-alt"></i><b>C</b></span>
-                                        <span class="pcoded-mtext">Charts</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="<?= base_url() ?>map-google.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-map-alt"></i><b>M</b></span>
-                                        <span class="pcoded-mtext">Maps</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="pcoded-navigation-label">Pages</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="pcoded-hasmenu active pcoded-trigger">
-                                    <a href="<?= base_url() ?>javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-id-badge"></i><b>A</b></span>
-                                        <span class="pcoded-mtext">Pages</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                    <ul class="pcoded-submenu">
-                                        <li class="">
-                                            <a href="<?= base_url() ?>auth-normal-sign-in.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Login</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="<?= base_url() ?>auth-sign-up.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Registration</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class="active">
-                                            <a href="<?= base_url() ?>sample-page.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-layout-sidebar-left"></i><b>S</b></span>
-                                                <span class="pcoded-mtext">Sample Page</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </li>
                             </ul>
                         </div>
