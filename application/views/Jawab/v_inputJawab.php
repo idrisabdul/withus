@@ -213,7 +213,7 @@ if ($sqlcheck->num_rows() > 0) {
                                 '</div>' +
                                 '</div>' +
                                 ' <?php } ?>' +
-                                '<p class="text-muted">' + data[i]['jawaban'] + '</p>' +
+                                '<p class="">' + data[i]['jawaban'].trim() + '</p>' +
                                 '<i style="color: green;" <?php if (!$this->session->userdata('username')) { ?> id="apreciate" class="fa fa-trophy mr-2" <?php } else { ?> id="apreciate1" class="fa fa-trophy mr-2" <?php } ?>  data-id="' + data[i]['id_jawab'] + '"></i><label class="badge badge-inverse-success"><span id="jumlahlike">' + data[i]['rating'] + '</span></label>' +
                                 '</td>' +
                                 '</tr>';

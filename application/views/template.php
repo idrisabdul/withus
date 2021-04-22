@@ -206,10 +206,24 @@
                             </div>
                             <div class="pcoded-navigation-label"></div>
                             <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
+                                <li class="active">
                                     <a href="<?= base_url() ?>home" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                                         <span class="pcoded-mtext">Beranda</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="chart-morris.html" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-receipt"></i><b>C</b></span>
+                                        <span class="pcoded-mtext">Bincang Psikolog</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="map-google.html" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-id-badge"></i><b>M</b></span>
+                                        <span class="pcoded-mtext">Teman Terbaik</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>

@@ -7,10 +7,10 @@
                         <div class="card-header">
                             <form action="<?= base_url('tanya/input') ?>" method="post">
                                 <div class="form-group form-default">
-                                    <h5>Curhat Sini</h5>
+                                    <h5>Cerita Sini</h5>
                                     <div class="row">
                                         <div class="col-md">
-                                            <textarea name="pertanyaan" class="form-control mt-4"></textarea>
+                                            <textarea name="pertanyaan" placeholder="Tidak selamanya masalah harus dipendam, terkadang dengan bercerita membuat hati jadi lega" class="form-control mt-4"></textarea>
                                         </div>
                                     </div>
                                     <div class="row">
