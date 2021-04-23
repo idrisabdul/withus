@@ -10,7 +10,7 @@
                                     <h5>Cerita Sini</h5>
                                     <div class="row">
                                         <div class="col-md">
-                                            <textarea name="pertanyaan" placeholder="Tidak selamanya masalah harus dipendam, terkadang dengan bercerita membuat hati jadi lega" class="form-control mt-4"></textarea>
+                                            <textarea name="pertanyaan" placeholder="Tidak selamanya masalah harus dipendam, terkadang dengan bercerita membuat hati jadi lega" class="form-control mt-4 form-cerita"></textarea>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -24,7 +24,7 @@
                                         <div class="col-sm-6">
                                             <select name="username" id="" class="form-control">
                                                 <option value="<?= ucfirst($this->session->userdata('username')); ?>"><?= ucfirst($this->session->userdata('username')); ?></option>
-                                                <option value="No Name">No Name</option>
+                                                <option value="Anonym">Anonym</option>
                                             </select>
                                         </div>
                                         <div class="col-sm-3">
@@ -32,7 +32,7 @@
                                                 <?php if (!$this->session->userdata('username')) { ?>
                                                     <button class="btn btn-sm btn-disabled waves-effect waves-light mt-2" disabled><i class="fa fa-edit" aria-hidden="true"></i>Ajukan</button>
                                                 <?php } else { ?>
-                                                    <button class="btn btn-sm btn-info waves-effect waves-light mt-2"><i class="fa fa-edit" aria-hidden="true"></i>Ajukan</button>
+                                                    <button class="btn btn-sm btn-disabled waves-effect waves-light mt-2" disabled id="disable"><i class="fa fa-edit" aria-hidden="true"></i>Ajukan</button>
                                                 <?php } ?>
                                             </div>
                                         </div>
@@ -115,9 +115,25 @@
     </div>
 </div>
 
+<script type="text/javascript" src="<?= base_url() ?>assets/js/jquery/jquery.min.js "></script>
+<script type="text/javascript" src="<?= base_url() ?>assets/js/script.min.js"></script>
+
 <script>
     function deleteConfirm(url) {
         $('#btn-delete').attr('href', url);
         $('#exampleModalCenter').modal();
     }
+
+    $(document).ready(function() {
+        $('.form-cerita').on('keyup', function() {
+            empty = $('.form-cerita').val().length;
+
+
+            if (empty > 0) {
+                $('#disable').removeAttr('disabled').removeClass('btn-disabled').addClass('btn-info');
+            } else if (empty == 0) {
+                $('#disable').attr('disabled', 'disabled').removeClass('btn-info').addClass('btn-disabled');
+            }
+        });
+    });
 </script>

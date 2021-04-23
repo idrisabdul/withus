@@ -195,7 +195,6 @@ if ($sqlcheck->num_rows() > 0) {
                         if (user == data[i]['nama_jawab']) {
                             html += '<tr>' +
                                 '<td>' +
-                                '<td class="mb-2 mt-3">' +
                                 '<div class="text-right">' +
                                 '<h6 class="pull-left">' + data[i]['nama_jawab'] + '</h6>' +
                                 '<?php if ($this->session->userdata('username')) { ?> ' +
@@ -214,13 +213,12 @@ if ($sqlcheck->num_rows() > 0) {
                                 '</div>' +
                                 ' <?php } ?>' +
                                 '<p class="">' + data[i]['jawaban'].trim() + '</p>' +
-                                '<i style="color: green;" <?php if (!$this->session->userdata('username')) { ?> id="apreciate" class="fa fa-trophy mr-2" <?php } else { ?> id="apreciate1" class="fa fa-trophy mr-2" <?php } ?>  data-id="' + data[i]['id_jawab'] + '"></i><label class="badge badge-inverse-success"><span id="jumlahlike">' + data[i]['rating'] + '</span></label>' +
+                                '<i style="color: orange;" <?php if (!$this->session->userdata('username')) { ?> id="apreciate" class="fa fa-star mr-2" <?php } else { ?> id="apreciate1" class="fa fa-star mr-2" <?php } ?>  data-id="' + data[i]['id_jawab'] + '"></i><label class="badge badge-inverse-primary"><span id="jumlahlike">' + data[i]['rating'] + '</span></label>' +
                                 '</td>' +
                                 '</tr>';
                         } else {
                             html += '<tr>' +
                                 '<td>' +
-                                '<td class="mb-2 mt-3">' +
                                 '<div class="text-right">' +
                                 '<h6 class="pull-left">' + data[i]['nama_jawab'] + '</h6>' +
                                 '<?php if ($this->session->userdata('username')) { ?> ' +
@@ -238,7 +236,7 @@ if ($sqlcheck->num_rows() > 0) {
                                 '</div>' +
                                 ' <?php } ?>' +
                                 '<p class="text-muted">' + data[i]['jawaban'] + '</p>' +
-                                '<i style="color: green;" <?php if (!$this->session->userdata('username')) { ?> id="apreciate" class="fa fa-trophy mr-2" <?php } else { ?> id="apreciate1" class="fa fa-trophy mr-2" <?php } ?>  data-id="' + data[i]['id_jawab'] + '"></i><label class="badge badge-inverse-success"><span id="jumlahlike">' + data[i]['rating'] + '</span></label>' +
+                                '<i style="color: orange;" <?php if (!$this->session->userdata('username')) { ?> id="apreciate" class="fa fa-star mr-2" <?php } else { ?> id="apreciate1" class="fa fa-star mr-2" <?php } ?>  data-id="' + data[i]['id_jawab'] + '"></i><label class="badge badge-inverse-primary"><span id="jumlahlike">' + data[i]['rating'] + '</span></label>' +
                                 '</td>' +
                                 '</tr>';
 
@@ -254,7 +252,7 @@ if ($sqlcheck->num_rows() > 0) {
         $('#jawaban_show').on('click', '#apreciate1', function() {
             var id = $(this).data('id');
             $clicked_btn = $(this);
-            if ($clicked_btn.hasClass('fa-trophy')) {
+            if ($clicked_btn.hasClass('fa-star')) {
                 action = 'apreciate';
             }
             $.ajax({

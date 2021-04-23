@@ -73,11 +73,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card mat-clr-stat-card text-white green">
+                    <div class="card mat-clr-stat-card text-white yellow">
                         <div class="card-block">
                             <div class="row">
-                                <div class="col-3 text-center bg-c-green">
-                                    <i class="fas fa-trophy mat-icon f-24"></i>
+                                <div class="col-3 text-center bg-c-yellow">
+                                    <i class="fas fa-star mat-icon f-24"></i>
                                 </div>
                                 <div class="col-9 cst-cont">
                                     <h5><?= $jumlahapresiasi ?></h5>
@@ -121,7 +121,7 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <i style="color:green;" class="fa fa-trophy mr-2"></i><label class="badge badge-inverse-success"><?= $la['rating'] ?></label>
+                                                        <i style="color:orange;" class="fa fa-star mr-2"></i><label class="badge badge-inverse-success"><?= $la['rating'] ?></label>
                                                     </td>
                                                 </a>
                                             </tr>
