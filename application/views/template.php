@@ -155,11 +155,6 @@
                                             </a>
                                         </li>
                                         <li class="waves-effect waves-light">
-                                            <a href="auth-lock-screen.html">
-                                                <i class="ti-lock"></i> Lock Screen
-                                            </a>
-                                        </li>
-                                        <li class="waves-effect waves-light">
                                             <a href="<?= base_url() ?>auth/logout">
                                                 <i class="ti-layout-sidebar-left"></i> Logout
                                             </a>
@@ -221,9 +216,9 @@
                                     </a>
                                 </li>
                                 <li class="">
-                                    <a href="map-google.html" class="waves-effect waves-dark">
+                                    <a href="<?= base_url() ?>konsultasi" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-id-badge"></i><b>M</b></span>
-                                        <span class="pcoded-mtext">Teman Terbaik</span>
+                                        <span class="pcoded-mtext">Konsultasi</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
