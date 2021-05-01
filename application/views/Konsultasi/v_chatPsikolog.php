@@ -221,7 +221,7 @@
             <div class="inbox_msg">
                 <div class="mesgs">
                     <div class="msg_history">
-                        <div class="incoming_msg">
+                        <!-- <div class="incoming_msg">
                             <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                             <div class="received_msg">
                                 <div class="received_withd_msg">
@@ -246,6 +246,15 @@
                                     <span class="time_date"> 11:01 AM | Today</span>
                                 </div>
                             </div>
+                        </div> -->
+                        <div class="incoming_msg">
+                            <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                            <div class="received_msg">
+                                <div class="received_withd_msg">
+                                    <p>Test, which is a new approach to have</p>
+                                    <span class="time_date"> 11:01 AM | Yesterday</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="type_msg">
@@ -263,6 +272,31 @@
 </div>
 
 <script type="text/javascript" src="<?= base_url() ?>assets/js/jquery/jquery.min.js "></script>
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+<script>
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('6d9d97acfa4a94ce7d0a', {
+        cluster: 'ap1'
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+        // alert(data.message);
+        showMessage(data);
+    });
+
+    function showMessage(data) {
+        var pesan = '';
+        var i;
+        for (i = 0; i < data.length; i++) {
+            pesan += '<b>Pesan</b> :<span>' + data[i]['pesan'] + '</span><br>';
+        }
+        $('.msg_history').html(pesan);
+        // alert(pesan);
+    }
+</script>
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -280,7 +314,7 @@
                     pesan_keluar: penerima,
                     pesan: pesan,
                 },
-                cache: false,
+                dataType: "JSON",
                 success: function(data) {
                     $('#pesan').val("");
                 }
