@@ -21,4 +21,10 @@ class Konsultasi_m extends CI_Model
     {
         $this->db->insert('chat', $pesan);
     }
+
+    public function showChat($idpesan_masuk, $idpesan_keluar)
+    {
+        $qry = "SELECT * FROM chat WHERE pesan_masuk = $idpesan_masuk AND pesan_keluar = $idpesan_keluar OR pesan_masuk = $idpesan_keluar AND pesan_keluar = $idpesan_masuk";
+        return $this->db->query($qry)->result_array();
+    }
 }

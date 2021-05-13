@@ -116,7 +116,6 @@
 </div>
 
 <script type="text/javascript" src="<?= base_url() ?>assets/js/jquery/jquery.min.js "></script>
-<script type="text/javascript" src="<?= base_url() ?>assets/js/script.min.js"></script>
 
 <script>
     function deleteConfirm(url) {
