@@ -215,17 +215,17 @@
 </style>
 
 <div class="container">
-    <input type="text" name="idpesan_masuk" id="idpesan_masuk" value="<?= $idpesan_masuk ?>">
+    <input type="hidden" name="idpesan_masuk" id="idpesan_masuk" value="<?= $idpesan_masuk ?>">
     <div class="messaging">
         <div class="inbox_msg">
             <div class="mesgs">
-                <?php foreach ($user_chat as $u) { ?>
-                    <div class="msg_history">
+                <div class="msg_history">
+                    <?php foreach ($user_chat as $u) { ?>
                         <?php if ($u['pesan_masuk'] === $idpesan_masuk) { ?>
                             <div class="outgoing_msg">
                                 <div class="sent_msg">
                                     <p><?= $u['pesan'] ?></p>
-                                    <span class="time_date"> 11:01 AM | Today</span>
+                                    <span class="time_date"> <?= $u['tgl_chat'] ?></span>
                                 </div>
                             </div>
                         <?php } else { ?>
@@ -234,13 +234,13 @@
                                 <div class="received_msg">
                                     <div class="received_withd_msg">
                                         <p><?= $u['pesan'] ?></p>
-                                        <span class="time_date"> 11:01 AM | Yesterday</span>
+                                        <span class="time_date"> <?= $u['tgl_chat'] ?></span>
                                     </div>
                                 </div>
                             </div>
                         <?php } ?>
-                        <div class="getnewchat">
-                        </div>
+                        <!-- <div class="getnewchat">
+                        </div> -->
                         <!-- <div class="incoming_msg">
                             <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                             <div class="received_msg">
@@ -252,12 +252,12 @@
                                 </div>
                             </div>
                         </div> -->
-                    </div>
-                <?php } ?>
+                    <?php } ?>
+                </div>
                 <div class="type_msg">
                     <div class="input_msg_write">
-                        <input type="text" id="pengirim" value="<?= $idpesan_masuk ?>" placeholder="Type a message" />
-                        <input type="text" id="penerima" value="<?= $this->session->userdata('id_user'); ?>" placeholder="Type a message" />
+                        <input type="hidden" id="pengirim" value="<?= $idpesan_masuk ?>" placeholder="Type a message" />
+                        <input type="hidden" id="penerima" value="<?= $this->session->userdata('id_user'); ?>" placeholder="Type a message" />
                         <input type="text" class="write_msg" id="pesan" placeholder="Type a message" />
                         <button class="msg_send_btn" id="send" type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                     </div>
@@ -289,38 +289,41 @@
     //     var id_p_masuk = $('#idpesan_masuk').val();
     //     var id_p_keluar = $('#penerima').val();
     //     var i;
+    //     var pesan = '';
+    //     console.log(data);
     //     // pesan += '<b>Pesan</b> :<span>' + data[i]['pesan'] + '</span><br>';
-    //     if (data.pesan_masuk == id_p_masuk) {
-    //         pesan = '';
-    //         pesan += '<div class="incoming_msg">';
-    //         pesan += '<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>';
-    //         pesan += '<div class="received_msg">';
-    //         pesan += '<div class="received_withd_msg">';
-    //         pesan += '<p>' + data.pesan + '</p>';
-    //         pesan += '<span class="time_date"> 11:01 AM | Yesterday</span>';
-    //         pesan += '</div>';
-    //         pesan += '</div>';
-    //         pesan += '</div>';
-    //         $('.msg_history').append(pesan);
-    //     } else {
-    //         pesan = '';
-    //         pesan += '<div class="outgoing_msg">';
-    //         pesan += '<div class="sent_msg">';
-    //         pesan += '<p>' + data.pesan + '</p>';
-    //         pesan += '<span class="time_date"> 11:01 AM | Today</span>';
-    //         pesan += '</div>';
-    //         pesan += '</div>';
-    //         $('.msg_history').append(pesan);
+    //     for (i = 0; i < data.length; i++) {
+    //         pesan += '<div class="msg_history">' +
+    //             '<div class="outgoing_msg">' +
+    //             '<div class="sent_msg">' +
+    //             '<p>' + data[i]['pesan'] + '</p>' +
+    //             '<span class="time_date"> 11:01 AM | Today</span>' +
+    //             '</div>' +
+    //             '</div>' +
+    //             '<div class="incoming_msg">' +
+    //             '<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>' +
+    //             '<div class="received_msg">' +
+    //             '<div class="received_withd_msg">' +
+    //             '<p>' + data[i]['pesan'] + '</p>' +
+    //             '<span class="time_date"> 11:01 AM | Yesterday</span>' +
+    //             '</div>' +
+    //             '</div>' +
+    //             '</div>' +
+    //             '</div>';
     //     }
 
-    //     // alert(pesan);
+    // $('.mesgs').html(pesan);
+
+    // // alert(pesan);
 
     // }
+
     function showMessage(data) {
         var data = data;
         // data = JSON.parse(data);
         console.log(data);
         var ses_id = <?php echo $this->session->userdata('id_user'); ?>;
+        var penerima = $('#penerima').val();
         if (data.pesan_keluar == ses_id) {
             html = '';
             html += '<div class="outgoing_msg">';
@@ -330,8 +333,8 @@
             html += '</div>';
             html += '</div>';
             // $('.msg_history').append(html);
-            $('.getnewchat').append(html);
-        } else {
+            $('.msg_history').append(html);
+        } else if (data.pesan_masuk == penerima) {
             html = '';
             html += '<div class="incoming_msg">';
             html += '<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>';
@@ -342,7 +345,7 @@
             html += '</div>';
             html += '</div>';
             html += '</div>';
-            $('.getnewchat').append(html);
+            $('.msg_history').append(html);
             // $('.msg_history').append(html);
             $('#pesan').val("");
         }

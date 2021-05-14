@@ -67,11 +67,15 @@ class Konsultasi extends CI_Controller
             $push = $this->db->from('chat');
             $push = $this->db->where('pesan_masuk', $pesan_masuk);
             $push = $this->db->where('pesan_keluar', $pesan_keluar);
-            // $push = $this->db->limit('1');
+            $push = $this->db->limit('1');
             $push = $this->db->get('')->result();
 
+            // $push = $this->Konsultasi_m->showChat($pesan_masuk, $pesan_keluar);
 
             foreach ($push as $key) {
+
+                // $pesan = $key['pesan_masuk'] === $pesan_masuk ? '<b> orang lain' . $key['pesan'] . '</b>' : '<b> kita' . $key['pesan'] . '</b>';
+
                 $data_push = $key;
             }
             $pusher->trigger('my-channel', 'my-event', $data_push);
