@@ -63,14 +63,14 @@ class Konsultasi extends CI_Controller
         // $data['message'] = 'hello world';
 
         if ($this->db->insert('chat', $pesan)) {
-            $push = $this->db->order_by('id_chat', 'desc');
+            $push = $this->db->order_by('id_chat', 'asc');
             $push = $this->db->from('chat');
             $push = $this->db->where('pesan_masuk', $pesan_masuk);
             $push = $this->db->where('pesan_keluar', $pesan_keluar);
-            $push = $this->db->limit('1');
+            // $push = $this->db->limit('1');
             $push = $this->db->get('')->result();
 
-            // $push = $this->Konsultasi_m->showChat($pesan_masuk, $pesan_keluar);
+            // $push = $this->Konsultasi_m->lastChat($pesan_masuk, $pesan_keluar);
 
             foreach ($push as $key) {
 
@@ -81,5 +81,10 @@ class Konsultasi extends CI_Controller
             $pusher->trigger('my-channel', 'my-event', $data_push);
         }
         echo json_encode($data_push);
+    }
+
+    public function showAllMessage()
+    {
+        $this->template->load('template', 'konsultasi/v_showChat');
     }
 }

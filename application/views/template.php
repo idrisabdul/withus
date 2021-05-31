@@ -127,6 +127,12 @@
                             </li>
                         </ul>
                         <ul class="nav-right">
+                            <li class="">
+                                <a href="<?= base_url('Konsultasi/showAllMessage') ?>" class="displayChatbox waves-effect waves-light">
+                                    <i class="ti-comments"></i>
+                                    <span class="badge bg-c-green"></span>
+                                </a>
+                            </li>
                             <?php if (!$this->session->userdata('username')) { ?>
                                 <button class="btn bg-white mt-1 mb-1 mr-2"><a href="<?= base_url() ?>auth">
                                         <font color="blue">SIGN IN</font>
@@ -150,7 +156,7 @@
                                             </a>
                                         </li>
                                         <li class="waves-effect waves-light">
-                                            <a href="email-inbox.html">
+                                            <a href="<?= base_url('Konsultasi/showAllMessage') ?>">
                                                 <i class="ti-email"></i> My Messages
                                             </a>
                                         </li>
@@ -167,6 +173,7 @@
                     </div>
                 </div>
             </nav>
+
 
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
