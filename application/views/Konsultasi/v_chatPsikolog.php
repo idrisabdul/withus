@@ -230,7 +230,7 @@
                             </div>
                         <?php } else { ?>
                             <div class="incoming_msg">
-                                <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                <div class="incoming_msg_img"> <img src="<?= base_url() ?>assets/images/avatar-4.jpg" width="40px" class="img-radius" alt="User-Profile-Image"> </div>
                                 <div class="received_msg">
                                     <div class="received_withd_msg">
                                         <p><?= $u['pesan'] ?></p>
@@ -367,7 +367,7 @@
         } else if (data.pesan_keluar == pengirim && data.pesan_masuk == penerima) {
             html = '';
             html += '<div class="incoming_msg">';
-            html += '<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>';
+            html += '<div class="incoming_msg_img"> <img src="<?= base_url() ?>assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image"> </div>';
             html += '<div class="received_msg">';
             html += '<div class="received_withd_msg">';
             html += '<p>' + data.pesan + '</p>';

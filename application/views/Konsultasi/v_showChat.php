@@ -6,7 +6,7 @@
                 <div class="col-lg-12 col-xl-3">
                     <div class="user-head row">
                         <div class="user-face">
-                            <img class="img-fluid" src="../files/assets/images/logo.png" alt="Theme-Logo" />
+                            <img class="img-fluid" src="<?= base_url() ?>assets/images/logo.png" alt="Theme-Logo" />
                         </div>
                     </div>
                 </div>
@@ -40,41 +40,35 @@
 
                             <div class="mail-body-content">
                                 <div class="table-responsive">
-                                    <table class="table">
-                                        <tr class="unread">
-                                            <td>
-                                                <div class="check-star">
-                                                    <div class="fade-in-primary">
-                                                        <label>
-                                                            <img src="<?= base_url() ?>assets/images/avatar-4.jpg" width="35%" class="img-radius" alt="User-Profile-Image">
-                                                            <span class="cr"><i class="cr-icon icofont icofont-verification-check txt-primary"></i></span>
-                                                        </label>
+                                    <table class="table table-hover table-sm">
+                                        <?php foreach ($allmessage as $am) { ?>
+                                            <tr class="unread">
+                                                <td>
+                                                    <div class="check-star">
+                                                        <div class="fade-in-primary">
+                                                            <label>
+                                                                <img src="<?= base_url() ?>assets/images/avatar-4.jpg" width="30px" class="img-radius" alt="User-Profile-Image">
+                                                                <span class="cr"><i class="cr-icon icofont icofont-verification-check txt-primary"></i></span>
+                                                            </label>
+                                                        </div>
+                                                        <i class="icofont icofont-star text-warning"></i>
                                                     </div>
-                                                    <i class="icofont icofont-star text-warning"></i>
-                                                </div>
-                                            </td>
-                                            <td><a href="email-read.html" class="email-name waves-effect">Google Inc</a></td>
-                                            <td><a href="email-read.html" class="email-name waves-effect">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</a></td>
-                                            <td class="email-attch"><a href="#"><i class="icofont icofont-clip"></i></a></td>
-                                            <td class="email-time">08:01 AM</td>
-                                        </tr>
-                                        <tr class="unread">
-                                            <td>
-                                                <div class="check-star">
-                                                    <div class="fade-in-primary">
-                                                        <label>
-                                                            <img src="<?= base_url() ?>assets/images/avatar-4.jpg" width="35%" class="img-radius" alt="User-Profile-Image">
-                                                            <span class="cr"><i class="cr-icon icofont icofont-verification-check txt-primary"></i></span>
-                                                        </label>
-                                                    </div>
-                                                    <i class="icofont icofont-star text-warning"></i>
-                                                </div>
-                                            </td>
-                                            <td><a href="email-read.html" class="email-name waves-effect">Google Inc</a></td>
-                                            <td><a href="email-read.html" class="email-name waves-effect">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</a></td>
-                                            <td class="email-attch"><a href="#"><i class="icofont icofont-clip"></i></a></td>
-                                            <td class="email-time">08:01 AM</td>
-                                        </tr>
+                                                </td>
+                                                <td><a href="email-read.html" class="email-name waves-effect"><?= $am['pesan_masuk'] ?></a></td>
+                                                <td><a href="email-read.html" class="email-name waves-effect"><?= $am['pesan'] ?></a></td>
+                                                <?php
+                                                $datetime2 = strtotime(date("Y-m-d H:i:s"));
+                                                $datetime1 = strtotime($am['tgl_chat']);
+                                                $secs = $datetime2 - $datetime1; // == <seconds between the two times>
+                                                $days = $secs / 86400;  ?>
+                                                <td class="email-time"><?= intval($days) ?> Hari</td>
+                                                <?php if ($user_id == $am['pesan_masuk']) { ?>
+                                                    <td class="email-attch"><?= anchor('Konsultasi/chat/' . $am['pesan_keluar'], '<button href="#" name="id" id="jawab" class="btn btn-sm btn-outline-primary text-right f-w-600"><i class="fas fa-paper-plane"></i></button>') ?></td>
+                                                <?php } else { ?>
+                                                    <td class="email-attch"><?= anchor('Konsultasi/chat/' . $am['pesan_masuk'], '<button href="#" name="id" id="jawab" class="btn btn-sm btn-outline-primary text-right f-w-600"><i class="fas fa-paper-plane"></i></button>') ?></td>
+                                                <?php } ?>
+                                            </tr>
+                                        <?php } ?>
                                     </table>
                                 </div>
                             </div>

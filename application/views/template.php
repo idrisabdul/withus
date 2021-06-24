@@ -206,7 +206,7 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="pcoded-navigation-label"></div>
+                            <div class="pcoded-navigation-label">APPS</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="active">
                                     <a href="<?= base_url() ?>home" class="waves-effect waves-dark">
@@ -226,6 +226,30 @@
                                     <a href="<?= base_url() ?>konsultasi" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-id-badge"></i><b>M</b></span>
                                         <span class="pcoded-mtext">Konsultasi</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="<?= base_url('Konsultasi/showAllMessage') ?>" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-email"></i><b>M</b></span>
+                                        <span class="pcoded-mtext">Pesan</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="pcoded-navigation-label">Aktivitas</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="">
+                                    <a href="chart-morris.html" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="far fa-edit"></i><b>C</b></span>
+                                        <span class="pcoded-mtext">Tulis Artikel</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="map-google.html" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="far fa-clock"></i><b>M</b></span>
+                                        <span class="pcoded-mtext">Jadwal</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>

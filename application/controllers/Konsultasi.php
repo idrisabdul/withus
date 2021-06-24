@@ -10,6 +10,8 @@ class Konsultasi extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Konsultasi_m');
+
+        date_default_timezone_set('Asia/Bangkok');
     }
 
     public function index()
@@ -85,6 +87,14 @@ class Konsultasi extends CI_Controller
 
     public function showAllMessage()
     {
-        $this->template->load('template', 'konsultasi/v_showChat');
+        $user_id = $this->session->userdata('id_user');
+        $data['user_id'] = $user_id;
+        $data['allmessage'] = $this->db->query("SELECT * FROM chat WHERE pesan_masuk = '$user_id' OR pesan_keluar = '$user_id' GROUP BY pesan_keluar ORDER BY tgl_chat DESC")->result_array();
+        // $data['allmessage'] = $this->konsultasi_m->lastChat($user_id)
+
+        // echo "<pre>";
+        // echo var_dump($data['allmessage']);
+        // echo "</pre>";
+        $this->template->load('template', 'konsultasi/v_showChat', $data);
     }
 }
