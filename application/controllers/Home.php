@@ -33,7 +33,7 @@ class Home extends CI_Controller
 		$id = $this->input->post('id');
 		$this->db->delete('tanya', ['id_tanya' => $id]);
 		$this->db->delete('jawab', ['id_tanya' => $id]);
-		redirect('home');
+		redirect('Home');
 	}
 
 	function index()

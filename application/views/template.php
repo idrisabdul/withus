@@ -33,6 +33,8 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/jquery.mCustomScrollbar.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -207,57 +209,117 @@
                                 </form>
                             </div>
                             <div class="pcoded-navigation-label">APPS</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="active">
-                                    <a href="<?= base_url() ?>home" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-                                        <span class="pcoded-mtext">Beranda</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="chart-morris.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-receipt"></i><b>C</b></span>
-                                        <span class="pcoded-mtext">Bincang Psikolog</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="<?= base_url() ?>konsultasi" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-id-badge"></i><b>M</b></span>
-                                        <span class="pcoded-mtext">Konsultasi</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="<?= base_url('Konsultasi/showAllMessage') ?>" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-email"></i><b>M</b></span>
-                                        <span class="pcoded-mtext">Pesan</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="pcoded-navigation-label">Aktivitas</div>
-                            <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
-                                    <a href="chart-morris.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="far fa-edit"></i><b>C</b></span>
-                                        <span class="pcoded-mtext">Tulis Artikel</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="map-google.html" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="far fa-clock"></i><b>M</b></span>
-                                        <span class="pcoded-mtext">Jadwal</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                            </ul>
+                            <?php if ($this->session->userdata('user_level') == 1) { ?>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class="active">
+                                        <a href="<?= base_url() ?>Dashboard" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                            <span class="pcoded-mtext">Dashboard</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= base_url() ?>home" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                            <span class="pcoded-mtext">User</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="chart-morris.html" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-receipt"></i><b>C</b></span>
+                                            <span class="pcoded-mtext">Kategori</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="<?= base_url() ?>konsultasi" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-id-badge"></i><b>M</b></span>
+                                            <span class="pcoded-mtext">Kritik dan Saran</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="<?= base_url('Konsultasi/showAllMessage') ?>" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-email"></i><b>M</b></span>
+                                            <span class="pcoded-mtext">Laporan</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="pcoded-navigation-label">Aktivitas</div>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class="">
+                                        <a href="chart-morris.html" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="far fa-edit"></i><b>C</b></span>
+                                            <span class="pcoded-mtext">Tulis Artikel</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="map-google.html" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="far fa-clock"></i><b>M</b></span>
+                                            <span class="pcoded-mtext">Jadwal</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            <?php } else { ?>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class="active">
+                                        <a href="<?= base_url() ?>home" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                            <span class="pcoded-mtext">Beranda</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="chart-morris.html" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-receipt"></i><b>C</b></span>
+                                            <span class="pcoded-mtext">Bincang Psikolog</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="<?= base_url() ?>konsultasi" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-id-badge"></i><b>M</b></span>
+                                            <span class="pcoded-mtext">Konsultasi</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="<?= base_url('Konsultasi/showAllMessage') ?>" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-email"></i><b>M</b></span>
+                                            <span class="pcoded-mtext">Pesan</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="pcoded-navigation-label">Aktivitas</div>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class="">
+                                        <a href="chart-morris.html" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="far fa-edit"></i><b>C</b></span>
+                                            <span class="pcoded-mtext">Tulis Artikel</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="map-google.html" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="far fa-clock"></i><b>M</b></span>
+                                            <span class="pcoded-mtext">Jadwal</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            <?php } ?>
                         </div>
                     </nav>
                     <div class="pcoded-content">
                         <!-- Page-header start -->
+                        <!-- Required Jquery -->
+                        <script type="text/javascript" src="<?= base_url() ?>assets/js/jquery/jquery.min.js "></script>
+                        <script type="text/javascript" src="<?= base_url() ?>assets/js/jquery-ui/jquery-ui.min.js "></script>
 
                         <!-- Page-header end -->
                         <div class="pcoded-inner-content">
@@ -280,13 +342,15 @@
     <!-- Older IE warning message -->
 
     <!-- Warning Section Ends -->
-    <!-- Required Jquery -->
-    <script type="text/javascript" src="<?= base_url() ?>assets/js/jquery/jquery.min.js "></script>
-    <script type="text/javascript" src="<?= base_url() ?>assets/js/jquery-ui/jquery-ui.min.js "></script>
-    <script type="text/javascript" src="<?= base_url() ?>assets/js/popper.js/popper.min.js"></script>
-    <script type="text/javascript" src="<?= base_url() ?>assets/js/bootstrap/js/bootstrap.min.js "></script>
+
+
     <!-- waves js -->
     <script src="<?= base_url() ?>assets/pages/waves/js/waves.min.js"></script>
+
+
+    <script type="text/javascript" src="<?= base_url() ?>assets/js/popper.js/popper.min.js"></script>
+    <script type="text/javascript" src="<?= base_url() ?>assets/js/bootstrap/js/bootstrap.min.js "></script>
+
 
     <!-- jquery slimscroll js -->
     <script type="text/javascript" src="<?= base_url() ?>assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
@@ -296,6 +360,13 @@
     <!-- Custom js -->
     <script type="text/javascript" src="<?= base_url() ?>assets/js/script.min.js"></script>
 
+    <!-- Datatable  -->
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 
 </body>
 

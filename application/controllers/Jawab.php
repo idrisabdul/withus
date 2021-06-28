@@ -13,7 +13,7 @@ class Jawab extends CI_Controller
     public function index($id)
     {
         $data['tanya'] = $this->jawab_m->show($id);
-        $this->template->load('template', 'jawab/v_inputjawab', $data);
+        $this->template->load('template', 'Jawab/v_inputJawab', $data);
     }
 
     public function showJawab()

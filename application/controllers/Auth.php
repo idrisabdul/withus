@@ -13,7 +13,7 @@ class Auth extends CI_Controller
     public function index()
     {
         $data['title'] = "WithUs Login";
-        $this->load->view('auth/v_login', $data);
+        $this->load->view('Auth/v_login', $data);
     }
 
     public function process()
@@ -31,16 +31,17 @@ class Auth extends CI_Controller
                     'email' => $row['email'],
                     'profesi' => $row['profesi'],
                     'no_wa' => $row['no_wa'],
+                    'user_level' => $row['user_level'],
                 ];
                 $this->session->set_userdata($params);
                 echo "<script>window.location='" . base_url('home') . "'</script>";
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger">Password Salah</div>');
-                redirect('auth');
+                redirect('Auth');
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger">User tidak ditemukan</div>');
-            redirect('auth');
+            redirect('Auth');
         }
     }
 
@@ -50,7 +51,7 @@ class Auth extends CI_Controller
             'id_user', 'username', 'email', 'profesi', 'no_wa'
         ];
         $this->session->unset_userdata($params);
-        redirect('auth');
+        redirect('Auth');
     }
 
     public function registrasi()
@@ -71,7 +72,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('re-password', 'Password', 'required|trim|matches[password]');
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('auth/v_registrasi');
+            $this->load->view('Auth/v_registrasi');
         } else {
             $data = [
                 'username' => htmlspecialchars($this->input->post('username', true)),
@@ -79,12 +80,13 @@ class Auth extends CI_Controller
                 'profesi' => htmlspecialchars($this->input->post('profesi', true)),
                 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                 'no_wa' => htmlspecialchars($this->input->post('no_wa', true)),
+                'user_level' => 3,
             ];
 
             $this->db->insert('user', $data);
 
             $this->session->set_flashdata('message', '<div class="alert alert-info" role="alert">Selamat! Akun anda berhasil dibuat</div>');
-            redirect('auth');
+            redirect('Auth');
         }
     }
 }

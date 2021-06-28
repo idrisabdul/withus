@@ -3,9 +3,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Jawab_m extends CI_Model
 {
-    public function show($id)
+    public function show($id_tanya)
     {
-        return $this->db->get_where('tanya', ['id_tanya' => $id])->row_array();
+        $this->db->select("*");
+        $this->db->from("tanya");
+        $this->db->join("kategori", "kategori.id = tanya.kategori");
+        $this->db->join("user", "user.id_user = tanya.username");
+        $this->db->order_by("id_tanya", "DESC");
+        $this->db->where('id_tanya', $id_tanya);
+        return $this->db->get()->row_array();
     }
 
     public function input($data)
@@ -18,6 +24,7 @@ class Jawab_m extends CI_Model
         $this->db->select('*');
         $this->db->order_by('rating', 'desc');
         $this->db->from('jawab');
+        $this->db->join('user', 'user.id_user = jawab.nama_jawab');
         $this->db->where('id_tanya', $id_tanya);
         return $this->db->get()->result_array();
     }

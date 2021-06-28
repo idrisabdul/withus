@@ -17,7 +17,7 @@ class Konsultasi extends CI_Controller
     public function index()
     {
         $data['user_psikolog'] = $this->Konsultasi_m->getUserPsikolog();
-        $this->template->load('template', 'konsultasi/v_showPsikiater', $data);
+        $this->template->load('template', 'Konsultasi/v_showPsikiater', $data);
     }
 
     public function chat($idpesan_masuk)
@@ -35,7 +35,7 @@ class Konsultasi extends CI_Controller
         // var_dump($data['user_chat']);
         // echo '</pre>';
 
-        $this->template->load('template', 'konsultasi/v_chatPsikolog', $data);
+        $this->template->load('template', 'Konsultasi/v_chatPsikolog', $data);
     }
 
 
@@ -95,6 +95,6 @@ class Konsultasi extends CI_Controller
         // echo "<pre>";
         // echo var_dump($data['allmessage']);
         // echo "</pre>";
-        $this->template->load('template', 'konsultasi/v_showChat', $data);
+        $this->template->load('template', 'Konsultasi/v_showChat', $data);
     }
 }

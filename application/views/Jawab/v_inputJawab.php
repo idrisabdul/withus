@@ -1,9 +1,8 @@
 <style>
     .fixed-button {
         position: fixed;
-        bottom: 5px;
-        right: 10px;
-        left: 10px;
+        bottom: 50px;
+        right: 30px;
         opacity: 0;
         z-index: 9;
         -webkit-transition: all 0.5s ease;
@@ -31,8 +30,13 @@
         border-bottom: 1px solid #303549
     }
 
+    .fixed-button:hover {
+        -webkit-animation: none;
+        animation: none
+    }
 
     .fixed-button.active {
+        /* bottom: 50px; */
         opacity: 1
     }
 </style>
@@ -48,7 +52,7 @@
         <span><?= $tanya['tgl_pertanyaan']; ?></span>
         <div class="card-header-right">
             <div class="row">
-                <h5 style="color: seashell;"><?= $tanya['kategori']; ?></h5>
+                <h5 style="color: seashell;"><?= ucfirst($tanya['nm_kategori']); ?></h5>
                 <ul class=" mx-3 list-unstyled card-option">
                     <li>
                         <i class="fa fa fa-wrench open-card-option"></i>
@@ -101,7 +105,7 @@
         <input type="hidden" id="kategori" name="kategori" value="<?= $tanya['kategori'] ?>">
         <input type="hidden" id="pertanyaan" name="pertanyaan" value="<?= $tanya['pertanyaan']; ?>">
         <input type="hidden" id="id_tanya" name="id_tanya" value="<?= $tanya['id_tanya'] ?>">
-        <input type="hidden" id="username" name="username" value="<?= $this->session->userdata('username'); ?>">
+        <input type="hidden" id="username" name="username" value="<?= $this->session->userdata('id_user'); ?>">
 
         <textarea class="form-control form-control-round" name="jawaban" id="jawaban" cols="60" rows="2"> </textarea>
         <div class="text-right mt-2 mr-2">
@@ -192,11 +196,11 @@ if ($sqlcheck->num_rows() > 0) {
                     var user = $('#user').val();
                     // alert(data);
                     for (i = 0; i < data.length; i++) {
-                        if (user == data[i]['nama_jawab']) {
+                        if (user == data[i]['username']) {
                             html += '<tr>' +
                                 '<td>' +
                                 '<div class="text-right">' +
-                                '<h6 class="pull-left">' + data[i]['nama_jawab'] + '</h6>' +
+                                '<h6 class="pull-left">' + upperString(data[i]['username']) + '</h6>' +
                                 '<?php if ($this->session->userdata('username')) { ?> ' +
                                 '<a class="waves-effect waves-light" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="ti-more"></i></a>' +
                                 '<div class="dropdown-menu" aria-labelledby="dropdown-2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">' +
@@ -220,7 +224,7 @@ if ($sqlcheck->num_rows() > 0) {
                             html += '<tr>' +
                                 '<td>' +
                                 '<div class="text-right">' +
-                                '<h6 class="pull-left">' + data[i]['nama_jawab'] + '</h6>' +
+                                '<h6 class="pull-left">' + upperString(data[i]['username']) + '</h6>' +
                                 '<?php if ($this->session->userdata('username')) { ?> ' +
                                 '<a class="waves-effect waves-light" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="ti-more"></i></a>' +
                                 '<div class="dropdown-menu" aria-labelledby="dropdown-2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">' +
@@ -247,6 +251,10 @@ if ($sqlcheck->num_rows() > 0) {
                     $('#count_jaw').text(n);
                 }
             });
+        }
+
+        function upperString(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
         }
 
         $('#jawaban_show').on('click', '#apreciate1', function() {

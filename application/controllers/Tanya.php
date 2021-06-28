@@ -28,6 +28,6 @@ class Tanya extends CI_Controller
             'pertanyaan' => $this->input->post('pertanyaan'),
         ];
         $this->db->insert('tanya', $data);
-        redirect('home');
+        redirect('Home');
     }
 }
