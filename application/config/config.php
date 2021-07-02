@@ -23,7 +23,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://192.168.1.100/withus/';
+$config['base_url'] = 'http://192.168.1.102/withus/';
 
 /*
 |-------------------------------e. If you are using mod_rewrite to remove the page set this

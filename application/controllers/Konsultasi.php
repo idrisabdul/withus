@@ -97,4 +97,32 @@ class Konsultasi extends CI_Controller
         // echo "</pre>";
         $this->template->load('template', 'Konsultasi/v_showChat', $data);
     }
+
+    public function addKonsultan()
+    {
+        //Show Kategori
+        $query = "SELECT * FROM kategori";
+        $data['kategori'] = $this->db->query($query)->result_array();
+
+        $this->template->load('template', 'Konsultasi/v_addKonsultan', $data);
+    }
+
+    public function storeKonsultan()
+    {
+        $id =  $this->input->post('user_id');
+        $data = [
+            'user_id' => $id,
+            'nama_lengkap' => $this->input->post('nama_lengkap'),
+            'kategori' => $this->input->post('kategori'),
+            'tarif' => $this->input->post('tarif'),
+            'img_profile' => $this->input->post('img_profile'),
+            'motto_hidup' => $this->input->post('motto_hidup'),
+            'alamat' => $this->input->post('alamat'),
+            'status' => 0,
+            'on_off' => 0,
+        ];
+        $this->Konsultasi_m->storeKonsultan($data);
+        $this->db->update('user', ['user_level' => 2], ['id_user' => $id]);
+        redirect('Profile');
+    }
 }

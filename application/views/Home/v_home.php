@@ -102,7 +102,7 @@
                         <ul>
                             <li style="border-radius: 25px;" width="15px" data-li="0" class="text-center btn-filt btn btn-sm btn-outline-primary text-right f-w-600 mr-1 active">All</li>
                             <?php foreach ($kategori as $k) { ?>
-                                <li style="border-radius: 25px;" width="15px" data-li="<?= $k['id'] ?>" class="text-center btn-filt btn btn-sm btn-outline-primary text-right f-w-600 mr-1"><?= $k['nm_kategori'] ?></li>
+                                <li style="border-radius: 25px;" width="15px" data-li="<?= $k['id'] ?>" class="text-center btn-filt btn btn-sm btn-outline-primary text-right f-w-600 mr-1 mb-1"><?= $k['nm_kategori'] ?></li>
                             <?php } ?>
                         </ul>
                     </div>

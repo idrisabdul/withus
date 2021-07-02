@@ -21,10 +21,10 @@
                             <div class="col-xl-3 col-sm-3 col-md-6">
                                 <div class="card mx-1 py-3">
                                     <div class="text-center">
-                                        <h6><?= ucfirst($up['username']); ?></h6>
+                                        <h6><?= ucfirst($up['nama_lengkap']); ?></h6>
                                         <img class="img-80 img-radius mb-4" src="<?= base_url() ?>assets/images/avatar-4.jpg" alt="User-Profile-Image">
                                         <div class="text-center">
-                                            <?= anchor('Konsultasi/chat/' . $up['id_user'], '<button style="border-radius: 25px;" width="15px" class="text-center btn btn-sm btn-primary text-right f-w-600">Konsultasi</button>') ?>
+                                            <?= anchor('Konsultasi/chat/' . $up['user_id'], '<button style="border-radius: 25px;" width="15px" class="text-center btn btn-sm btn-primary text-right f-w-600">Konsultasi</button>') ?>
                                         </div>
                                     </div>
                                 </div>
@@ -36,6 +36,4 @@
             <!-- Project statustic end -->
         </div>
     </div>
-</div>
-</div>
 </div>

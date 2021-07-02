@@ -285,38 +285,6 @@
         showMessage(data);
     });
 
-    // function showMessage(data) {
-    //     var id_p_masuk = $('#idpesan_masuk').val();
-    //     var id_p_keluar = $('#penerima').val();
-    //     var i;
-    //     var pesan = '';
-    //     console.log(data);
-    //     // pesan += '<b>Pesan</b> :<span>' + data[i]['pesan'] + '</span><br>';
-    //     for (i = 0; i < data.length; i++) {
-    //         pesan += '<div class="msg_history">' +
-    //             '<div class="outgoing_msg">' +
-    //             '<div class="sent_msg">' +
-    //             '<p>' + data[i]['pesan'] + '</p>' +
-    //             '<span class="time_date"> 11:01 AM | Today</span>' +
-    //             '</div>' +
-    //             '</div>' +
-    //             '<div class="incoming_msg">' +
-    //             '<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>' +
-    //             '<div class="received_msg">' +
-    //             '<div class="received_withd_msg">' +
-    //             '<p>' + data[i]['pesan'] + '</p>' +
-    //             '<span class="time_date"> 11:01 AM | Yesterday</span>' +
-    //             '</div>' +
-    //             '</div>' +
-    //             '</div>' +
-    //             '</div>';
-    //     }
-
-    // $('.mesgs').html(pesan);
-
-    // // alert(pesan);
-
-    // }
 
     function showMessage(data) {
         var data = data;
@@ -326,34 +294,6 @@
         // var penerima = $('#penerima').val();
         var penerima = $('#penerima').val();
         var pengirim = $('#pengirim').val();
-        // alert(pengirim);
-        // if (data.pesan_keluar == penerima) {
-        //     html = '';
-        //     html += '<div class="outgoing_msg">';
-        //     html += '<div class="sent_msg">';
-        //     html += '<p>' + data.pesan + '</p>';
-        //     html += '<span class="time_date">' + data.tgl_chat + '</span>';
-        //     html += '</div>';
-        //     html += '</div>';
-        //     // $('.msg_history').append(html);
-        //     $('.msg_history').append(html);
-        // } else if (data.pesan_masuk == pengirim) {
-        //     html = '';
-        //     html += '<div class="incoming_msg">';
-        //     html += '<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>';
-        //     html += '<div class="received_msg">';
-        //     html += '<div class="received_withd_msg">';
-        //     html += '<p>' + data.pesan + '</p>';
-        //     html += '<span class="time_date">' + data.tgl_chat + '</span>';
-        //     html += '</div>';
-        //     html += '</div>';
-        //     html += '</div>';
-        //     $('.msg_history').append(html);
-        //     // $('.msg_history').append(html);
-        //     $('#pesan').val("");
-        // }
-        // alert(data.pesan_keluar);
-        // alert(penerima);
         if (data.pesan_keluar == penerima) {
             html = '';
             html += '<div class="outgoing_msg">';
@@ -362,7 +302,6 @@
             html += '<span class="time_date">' + data.tgl_chat + '</span>';
             html += '</div>';
             html += '</div>';
-            // $('.msg_history').append(html);
             $('.msg_history').append(html);
         } else if (data.pesan_keluar == pengirim && data.pesan_masuk == penerima) {
             html = '';
@@ -376,40 +315,8 @@
             html += '</div>';
             html += '</div>';
             $('.msg_history').append(html);
-            // $('.msg_history').append(html);
-            $('#pesan').val("");
         }
-        // else if (data.pesan_masuk == penerima && pesan_keluar == pengirim) {
-        //     html = '';
-        //     html += '<div class="incoming_msg">';
-        //     html += '<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>';
-        //     html += '<div class="received_msg">';
-        //     html += '<div class="received_withd_msg">';
-        //     html += '<p>' + data.pesan + '</p>';
-        //     html += '<span class="time_date">' + data.tgl_chat + '</span>';
-        //     html += '</div>';
-        //     html += '</div>';
-        //     html += '</div>';
-        //     $('.msg_history').append(html);
-        //     // $('.msg_history').append(html);
-        //     $('#pesan').val("");
-        // }
 
-        //  else {
-        //     html = '';
-        //     html += '<div class="incoming_msg">';
-        //     html += '<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>';
-        //     html += '<div class="received_msg">';
-        //     html += '<div class="received_withd_msg">';
-        //     html += '<p>' + data.pesan + '</p>';
-        //     html += '<span class="time_date">' + data.tgl_chat + '</span>';
-        //     html += '</div>';
-        //     html += '</div>';
-        //     html += '</div>';
-        //     $('.msg_history').append(html);
-        //     // $('.msg_history').append(html);
-        //     $('#pesan').val("");
-        // }
     }
 
     $(document).ready(function() {
@@ -456,7 +363,12 @@
                 },
                 dataType: "JSON",
                 success: function(data) {
-                    $('#pesan').val("");
+                    // alert(data.pesan_keluar);
+                    // alert(penerima);
+                    if (data.pesan_keluar == penerima) {
+                        $('#pesan').val("");
+                    }
+                    // alert(data.pesan_keluar);
                     // alert('success');
                 },
                 error: function(data) {

@@ -129,12 +129,6 @@
                             </li>
                         </ul>
                         <ul class="nav-right">
-                            <li class="">
-                                <a href="<?= base_url('Konsultasi/showAllMessage') ?>" class="displayChatbox waves-effect waves-light">
-                                    <i class="ti-comments"></i>
-                                    <span class="badge bg-c-green"></span>
-                                </a>
-                            </li>
                             <?php if (!$this->session->userdata('username')) { ?>
                                 <button class="btn bg-white mt-1 mb-1 mr-2"><a href="<?= base_url() ?>auth">
                                         <font color="blue">SIGN IN</font>
@@ -160,6 +154,11 @@
                                         <li class="waves-effect waves-light">
                                             <a href="<?= base_url('Konsultasi/showAllMessage') ?>">
                                                 <i class="ti-email"></i> My Messages
+                                            </a>
+                                        </li>
+                                        <li class="waves-effect waves-light">
+                                            <a href="<?= base_url('Konsultasi/addKonsultan') ?>">
+                                                <i class="ti-user"></i> Jadi Konsultan
                                             </a>
                                         </li>
                                         <li class="waves-effect waves-light">
@@ -211,7 +210,7 @@
                             <div class="pcoded-navigation-label">APPS</div>
                             <?php if ($this->session->userdata('user_level') == 1) { ?>
                                 <ul class="pcoded-item pcoded-left-item">
-                                    <li class="active">
+                                    <li <?= $this->uri->segment(1) == 'Dashboard' ? 'class="active"' : '' ?>>
                                         <a href="<?= base_url() ?>Dashboard" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                                             <span class="pcoded-mtext">Dashboard</span>
@@ -219,7 +218,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="<?= base_url() ?>home" class="waves-effect waves-dark">
+                                        <a href="<?= base_url() ?>" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                                             <span class="pcoded-mtext">User</span>
                                             <span class="pcoded-mcaret"></span>
@@ -266,34 +265,52 @@
                                 </ul>
                             <?php } else { ?>
                                 <ul class="pcoded-item pcoded-left-item">
-                                    <li class="active">
+                                    <li <?= $this->uri->segment(1) == 'home' || $this->uri->segment(1) == ''  ? 'class="active"' : '' ?>>
                                         <a href="<?= base_url() ?>home" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                                             <span class="pcoded-mtext">Beranda</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                     </li>
-                                    <li class="">
+                                    <li <?= $this->uri->segment(1) == 'Dashboard' || $this->uri->segment(1) == ''  ? 'class="active"' : '' ?>>
                                         <a href="chart-morris.html" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="ti-receipt"></i><b>C</b></span>
                                             <span class="pcoded-mtext">Bincang Psikolog</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                     </li>
-                                    <li class="">
-                                        <a href="<?= base_url() ?>konsultasi" class="waves-effect waves-dark">
-                                            <span class="pcoded-micon"><i class="ti-id-badge"></i><b>M</b></span>
+                                    <li class="pcoded-hasmenu <?= $this->uri->segment(1) == 'Konsultasi' || $this->uri->segment(1) == 'konsultasi'  ? 'active pcoded-trigger' : '' ?>">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i><b>BC</b></span>
                                             <span class="pcoded-mtext">Konsultasi</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
+                                        <ul class="pcoded-submenu">
+                                            <li <?= $this->uri->segment(1) == 'konsultasi'  ? 'class="active"' : '' ?>>
+                                                <a href="<?= base_url() ?>konsultasi" class="waves-effect waves-dark">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext">Pilih Konsultasi</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+                                            <li <?= $this->uri->segment(2) == 'showAllMessage'  ? 'class="active"' : '' ?>>
+                                                <a href="<?= base_url('Konsultasi/showAllMessage') ?>" class="waves-effect waves-dark">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext">Pesan</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+                                            <li <?= $this->uri->segment(2) == 'addKonsultan'  ? 'class="active"' : '' ?>>
+                                                <a href="<?= base_url('Konsultasi/addKonsultan') ?>" class="waves-effect waves-dark">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext">Jadi Konsultan</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+                                        </ul>
+
                                     </li>
-                                    <li class="">
-                                        <a href="<?= base_url('Konsultasi/showAllMessage') ?>" class="waves-effect waves-dark">
-                                            <span class="pcoded-micon"><i class="ti-email"></i><b>M</b></span>
-                                            <span class="pcoded-mtext">Pesan</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
+
                                 </ul>
                                 <div class="pcoded-navigation-label">Aktivitas</div>
                                 <ul class="pcoded-item pcoded-left-item">
@@ -363,10 +380,25 @@
     <!-- Datatable  -->
     <script>
         $(document).ready(function() {
-            $('#example').DataTable();
+            $('#example').DataTable({
+                "lengthMenu": [
+                    [3, 5, -1],
+                    [3, 5, "All"]
+                ]
+            });
         });
     </script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example_user').DataTable({
+                "lengthMenu": [
+                    [5, -1],
+                    [5, "All"]
+                ]
+            });
+        });
+    </script>
+
 
 </body>
 

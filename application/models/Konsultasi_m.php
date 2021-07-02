@@ -6,8 +6,8 @@ class Konsultasi_m extends CI_Model
     public function getUserPsikolog()
     {
         $this->db->select('*');
-        $this->db->where('user_level', 2);
-        return $this->db->get('user')->result_array();
+        $this->db->where('status', 1);
+        return $this->db->get('user_consultan')->result_array();
     }
 
     public function getUserId($id)
@@ -32,5 +32,10 @@ class Konsultasi_m extends CI_Model
     {
         $qry = "SELECT * FROM chat WHERE pesan_masuk = $idpesan_masuk AND pesan_keluar = $idpesan_keluar OR pesan_masuk = $idpesan_keluar AND pesan_keluar = $idpesan_masuk ORDER BY id_chat DESC LIMIT 1";
         return $this->db->query($qry)->result_array();
+    }
+
+    public function storeKonsultan($data)
+    {
+        return $this->db->insert('user_consultan', $data);
     }
 }
