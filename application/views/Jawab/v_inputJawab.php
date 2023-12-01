@@ -106,11 +106,13 @@
         <input type="hidden" id="pertanyaan" name="pertanyaan" value="<?= $tanya['pertanyaan']; ?>">
         <input type="hidden" id="id_tanya" name="id_tanya" value="<?= $tanya['id_tanya'] ?>">
         <input type="hidden" id="username" name="username" value="<?= $this->session->userdata('id_user'); ?>">
+        <input type="hidden" id="username-anon" name="username-anon" value="0">
 
         <textarea class="form-control form-control-round" name="jawaban" id="jawaban" cols="60" rows="2"> </textarea>
         <div class="text-right mt-2 mr-2">
             <button href="#" id="hide" class="btn btn-sm btn-secondary text-right f-w-600">x</button>
             <button href="#" id="jawab" class="btn btn-sm btn-primary text-right f-w-600">Jawab</button>
+            <button href="#" id="jawab-anon" class="btn btn-sm btn-primary text-right f-w-600">Jawab Sbg Anon</button>
         </div>
     </div>
 </div>
@@ -206,7 +208,6 @@ if ($sqlcheck->num_rows() > 0) {
                                 '<div class="dropdown-menu" aria-labelledby="dropdown-2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">' +
                                 '<a class="dropdown-item waves-light waves-effect" id="delete-jaw" data="' + data[i]['id_jawab'] + '" href="javascript:;">Hapus</a>' +
                                 '<div class="dropdown-divider"></div>' +
-                                '<a class="dropdown-item waves-light waves-effect" href="#">Edit</a>' +
                                 '</div>' +
                                 '</div>' +
                                 '<?php } else { ?>' +
@@ -308,6 +309,37 @@ if ($sqlcheck->num_rows() > 0) {
             var pertanyaan = $('#pertanyaan').val();
             var id_tanya = $('#id_tanya').val();
             var username = $('#username').val();
+            var jawaban = $('#jawaban').val();
+            if (jawaban != "") {
+                $.ajax({
+                    url: "<?= base_url('jawab/input'); ?>",
+                    type: "POST",
+                    data: {
+                        type: 1,
+                        nama_nanya: nama_nanya,
+                        kategori: kategori,
+                        pertanyaan: pertanyaan,
+                        id_tanya: id_tanya,
+                        username: username,
+                        jawaban: jawaban,
+                    },
+                    cache: false,
+                    success: function(data) {
+                        tampil_jawaban();
+                        $('#jawaban').val('');
+                    }
+                });
+            } else {
+                alert("Anda Belum menjawab");
+            }
+        });
+
+        $('#jawab-anon').on('click', function() {
+            var nama_nanya = $('#nama_nanya').val();
+            var kategori = $('#kategori').val();
+            var pertanyaan = $('#pertanyaan').val();
+            var id_tanya = $('#id_tanya').val();
+            var username = $('#username-anon').val();
             var jawaban = $('#jawaban').val();
             if (jawaban != "") {
                 $.ajax({

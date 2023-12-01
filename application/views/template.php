@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>WithUs</title>
+    <title>B-Story</title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -111,7 +111,8 @@
                             </div>
                         </div>
                         <a href="index.html">
-                            <img class="img-fluid" src="<?= base_url() ?>assets/images/logo.png" alt="Theme-Logo" />
+                            <!-- <img class="img-fluid" src="<?= base_url() ?>assets/images/logo.png" alt="Theme-Logo" /> -->
+                            <h1>Bumenet Story</span>
                         </a>
                         <a class="mobile-options waves-effect waves-light">
                             <i class="ti-more"></i>
@@ -140,7 +141,7 @@
                                         <span><?= ucfirst($this->session->userdata('username')); ?></span>
                                         <i class="ti-angle-down"></i>
                                     </a>
-                                    <ul class="show-notification profile-notification">
+                                    <!-- <ul class="show-notification profile-notification">
                                         <li class="waves-effect waves-light">
                                             <a href="#!">
                                                 <i class="ti-settings"></i> Settings
@@ -166,7 +167,7 @@
                                                 <i class="ti-layout-sidebar-left"></i> Logout
                                             </a>
                                         </li>
-                                    </ul>
+                                    </ul> -->
                                 </li>
 
                             <?php } ?>
@@ -185,10 +186,10 @@
                                 <div class="main-menu-header">
                                     <img class="img-80 img-radius" src="<?= base_url() ?>assets/images/avatar-4.jpg" alt="User-Profile-Image">
                                     <div class="user-details">
-                                        <span id="more-details">John Doe<i class="fa fa-caret-down"></i></span>
+                                        <span id="more-details"><?= ucfirst($this->session->userdata('username')); ?><i class="fa fa-caret-down"></i></span>
                                     </div>
                                 </div>
-                                <div class="main-menu-content">
+                                <!-- <div class="main-menu-content">
                                     <ul>
                                         <li class="more-details">
                                             <a href="<?= base_url() ?>user-profile.html"><i class="ti-user"></i>Profil</a>
@@ -196,9 +197,9 @@
                                             <a href="<?= base_url() ?>auth/logout"><i class="ti-layout-sidebar-left"></i>Logout</a>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> -->
                             </div>
-                            <div class="p-15 p-b-0">
+                            <!-- <div class="p-15 p-b-0">
                                 <form class="form-material">
                                     <div class="form-group form-primary">
                                         <input type="text" name="footer-email" class="form-control">
@@ -206,7 +207,7 @@
                                         <label class="float-label"><i class="fa fa-search m-r-10"></i>Search Friend</label>
                                     </div>
                                 </form>
-                            </div>
+                            </div> -->
                             <div class="pcoded-navigation-label">APPS</div>
                             <?php if ($this->session->userdata('user_level') == 1) { ?>
                                 <ul class="pcoded-item pcoded-left-item">
@@ -272,7 +273,7 @@
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                     </li>
-                                    <li <?= $this->uri->segment(1) == 'Dashboard' || $this->uri->segment(1) == ''  ? 'class="active"' : '' ?>>
+                                    <!-- <li <?= $this->uri->segment(1) == 'Dashboard' || $this->uri->segment(1) == ''  ? 'class="active"' : '' ?>>
                                         <a href="chart-morris.html" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="ti-receipt"></i><b>C</b></span>
                                             <span class="pcoded-mtext">Bincang Psikolog</span>
@@ -306,13 +307,13 @@
                                                     <span class="pcoded-mtext">Jadi Konsultan</span>
                                                     <span class="pcoded-mcaret"></span>
                                                 </a>
-                                            </li>
+                                            </li> -->
                                         </ul>
 
                                     </li>
 
                                 </ul>
-                                <div class="pcoded-navigation-label">Aktivitas</div>
+                                <!-- <div class="pcoded-navigation-label">Aktivitas</div>
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class="">
                                         <a href="chart-morris.html" class="waves-effect waves-dark">
@@ -328,7 +329,7 @@
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                     </li>
-                                </ul>
+                                </ul> -->
                             <?php } ?>
                         </div>
                     </nav>

@@ -62,7 +62,7 @@
                                     <h5>Cerita Sini</h5>
                                     <div class="row">
                                         <div class="col-md">
-                                            <textarea name="pertanyaan" placeholder="Tidak selamanya masalah harus dipendam, terkadang dengan bercerita membuat hati jadi lega" class="form-control mt-4 form-cerita"></textarea>
+                                            <textarea name="pertanyaan" placeholder="Tidak selamanya masalah harus dipendam, terkadang dengan bercerita membuat hati jadi lega. Marilah mengeluhh, mengode (eaa), berteriak, berkata kasar, tpi jangan lupa tetaplah bercukur" class="form-control mt-4 form-cerita"></textarea>
                                         </div>
                                     </div>
                                     <div class="row">
